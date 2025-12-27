@@ -232,7 +232,7 @@ if __name__ == "__main__":
 
         previous_weekday = selected_day.weekday()
 
-    filepath = "output/Mein_Kalender_A5_" + str(YEAR) + ".pdf"
+    filepath = "output/Mein_Kalender_" + str(YEAR) + "_A5.pdf"
 
     final_document_A5.save(filepath)
     print("Successfully Created A5 Document " + filepath)
@@ -255,7 +255,7 @@ if __name__ == "__main__":
         if i + 1 < len(final_document_A5):
             page.show_pdf_page(bottom_rectangle, final_document_A5, i + 1)
 
-    filepath = "output/Mein_Kalender_A4_" + str(YEAR) + ".pdf"
+    filepath = "output/Mein_Kalender_" + str(YEAR) + "_A4.pdf"
     final_document_A4.save(filepath)
 
     print("Successfully Created A4 Document " + filepath)

@@ -6,6 +6,6 @@ max. 12 chars per note entry
 
 e.g. 
 ````
-"03-21","Heidi:Richi"
-"07-11","Neo
+"02-14","Heidi:Richi"
+"03-11","Neo"
 ````

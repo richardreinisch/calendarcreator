@@ -207,9 +207,9 @@ marimo/_lsp/
 __marimo__/
 
 # Project
-data/special-dates.csv
+data/special-dates_*.csv
 font/OFL.txt
 font/Silkscreen*
-logo/logo.*
+logo/logo_.*
 output/*.pdf
 
