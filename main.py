@@ -204,24 +204,24 @@ if __name__ == "__main__":
     STYRIAN_HOLIDAYS = get_styrian_holidays(YEAR)
     special_dates = { }
     template = pymupdf.open(TEMPLATE_FILE)
-    final_document = pymupdf.open()
+    final_document_A5 = pymupdf.open()
     template_page = template[0]
-    size_definition = template_page.rect
+    size_definition_A5 = template_page.rect
     font = pymupdf.Font()
     read_special_dates_csv()
     page_index = 1
     previous_weekday = 0
 
-    new_page = final_document.new_page(width=size_definition.width, height=size_definition.height)
+    new_page = final_document_A5.new_page(width=size_definition_A5.width, height=size_definition_A5.height)
     create_front_page(new_page)
 
-    new_page = create_new_page_using_template(final_document, template, size_definition)
+    new_page = create_new_page_using_template(final_document_A5, template, size_definition_A5)
     create_header(new_page, calendar.month_name[1], YEAR, page_index)
 
     for selected_day in all_days_in_year(YEAR):
 
         if previous_weekday == 6 and selected_day.weekday() == 0:
-            new_page = create_new_page_using_template(final_document, template, size_definition)
+            new_page = create_new_page_using_template(final_document_A5, template, size_definition_A5)
             create_header(new_page, calendar.month_name[selected_day.month], YEAR, page_index + 1)
             page_index += 1
 
@@ -232,10 +232,33 @@ if __name__ == "__main__":
 
         previous_weekday = selected_day.weekday()
 
-    filepath = "output/Mein_Kalender_" + str(YEAR) + ".pdf"
+    filepath = "output/Mein_Kalender_A5_" + str(YEAR) + ".pdf"
 
-    final_document.save(filepath)
-    print("Successfully Created " + filepath)
+    final_document_A5.save(filepath)
+    print("Successfully Created A5 Document " + filepath)
 
-    final_document.close()
     template.close()
+
+    final_document_A4 = pymupdf.open()
+    size_definition_A4 = pymupdf.Rect(0, 0, size_definition_A5.width, size_definition_A5.height * 2)
+
+    for i in range(0, len(final_document_A5), 2):
+
+        page = final_document_A4.new_page(width=size_definition_A4.width, height=size_definition_A4.height)
+        top_rectangle = pymupdf.Rect(0, 0, size_definition_A4.width, size_definition_A4.height / 2)
+
+        if i < len(final_document_A5):
+            page.show_pdf_page(top_rectangle, final_document_A5, i)
+
+        bottom_rectangle = pymupdf.Rect(0, size_definition_A4.height / 2, size_definition_A4.width, size_definition_A4.height)
+
+        if i + 1 < len(final_document_A5):
+            page.show_pdf_page(bottom_rectangle, final_document_A5, i + 1)
+
+    filepath = "output/Mein_Kalender_A4_" + str(YEAR) + ".pdf"
+    final_document_A4.save(filepath)
+
+    print("Successfully Created A4 Document " + filepath)
+
+    final_document_A5.close()
+    final_document_A4.close()
