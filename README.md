@@ -3,6 +3,8 @@
 
 Dieses Python-Skript erstellt einen Kalender im A5-Querformat mit steirischen Feiertagen und personalisierten Terminen zum selber basteln.
 
+![Calendar Creator Creation](CalendarCreator.jpg "Calendar Creator")
+
 ## 🚀 Features
 - Vollständiger Kalender für das definierte Jahr mit Kalenderwochen
 - Automatische Berechnung von Ostern und beweglichen Feiertagen
