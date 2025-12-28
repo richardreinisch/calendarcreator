@@ -18,14 +18,17 @@ Dieses Python-Skript erstellt einen Kalender im A5-Querformat mit steirischen Fe
 pip install pymupdf
 ```
 - **font/Silkscreen-Regular.ttf** (Pixel-Font)
-- **logo/logo.png** (Dein Logo)
+- **logo/logo.png** (Dein Logo, Empfehlung: 40x40 mm 300 DPI)
 - **template/Template.pdf** (Hintergrund-Template)
-- **data/special-dates.csv** (Format: `MM-DD,Termin1:Termin2`)
+- **data/special-dates.csv** (Format: `"MM-DD","Termin1:Termin2"`)
 
 ## ⚙️ Quickstart
 ```bash
-git clone <repo>
-cd mein-kalender
+git clone https://github.com/richardreinisch/calendarcreator
+cd calendarcreator
+```
+Create and source virtual environment.
+```bash
 pip install -r requirements.txt
 python main.py
 ```
